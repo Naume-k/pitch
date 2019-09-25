@@ -1,5 +1,4 @@
 import unittest
-# Import class to be tested
 from app.models import User
 
 class UserModelTest(unittest.TestCase):
