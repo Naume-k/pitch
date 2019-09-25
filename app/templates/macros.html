@@ -20,8 +20,6 @@
             <a href="{{url_for('main.downvote',pitch_id = category.id)}}" class="btn btn-danger btn-sm"><i class="far fa-thumbs-up"></i>Downvote
                 <span>{{category.downvotes.count()}}</span></a>
 
-
-
         </div>
 
     </div>
@@ -30,7 +28,6 @@
     {% endif %}
 </div>
 {% endmacro %}
-
 
 {% macro displayComment(comments) %}
 <ul>
@@ -51,10 +48,4 @@
 
 </ul>
 
-
-
-
 {% endmacro %}
-
-
-<!-- background-image: url('https://i.pinimg.com/originals/50/85/16/5085160094547b9bd560a072ca250953.jpg'); -->
