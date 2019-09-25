@@ -17,7 +17,6 @@ class User(UserMixin,db.Model):
     password_secure = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
     pass_secure = db.Column(db.String(255))
-    # reviews = db.relationship('Review',backref = 'user',lazy = "dynamic")
     comment = db.relationship('Comment', backref = 'user', lazy = 'dynamic')
     pitches= db.relationship('Pitch',backref = 'user',lazy = "dynamic")
     upvotes = db.relationship('Upvote', backref = 'user', lazy = 'dynamic')
@@ -26,6 +25,7 @@ class User(UserMixin,db.Model):
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
+        
     @property
     def password(self):
             raise AttributeError('You cannot read the password attribute')
@@ -34,12 +34,12 @@ class User(UserMixin,db.Model):
     def password(self, password):
             self.pass_secure = generate_password_hash(password)
 
-
     def verify_password(self,password):
             return check_password_hash(self.pass_secure,password)
 
     def __repr__(self):
         return f'User {self.username}'
+
 class Role(db.Model):
     __tablename__ = 'roles'
 
@@ -49,9 +49,9 @@ class Role(db.Model):
 
     def __repr__(self):
         return f'User {self.name}' 
+
 class Pitch(db.Model):
     
-
     __tablename__ = 'pitches'
 
     id = db.Column(db.Integer,primary_key = True)
@@ -72,8 +72,6 @@ class Pitch(db.Model):
         pitches = Pitch.query.filter_by(movie_id=id).all()
         return pitches
 
-    
-
 class Comment(db.Model):
     __tablename__='comments'
     
@@ -82,10 +80,8 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable= False)
     description = db.Column(db.Text)
 
-    
     def __repr__(self):
         return f"Comment : id: {self.id} comment: {self.description}"
-
 
 class Upvote(db.Model):
     __tablename__ = 'upvotes'
@@ -99,12 +95,10 @@ class Upvote(db.Model):
         db.session.add(self)
         db.session.commit()
 
-
     def add_upvotes(cls,id):
         upvote_pitch = Upvote(user = current_user, pitch_id=id)
         upvote_pitch.save_upvotes()
-
-    
+  
     @classmethod
     def get_upvotes(cls,id):
         upvote = Upvote.query.filter_by(pitch_id=id).all()
@@ -118,8 +112,6 @@ class Upvote(db.Model):
     def __repr__(self):
         return f'{self.user_id}:{self.pitch_id}'
 
-
-
 class Downvote(db.Model):
     __tablename__ = 'downvotes'
 
@@ -132,12 +124,10 @@ class Downvote(db.Model):
         db.session.add(self)
         db.session.commit()
 
-
     def add_downvotes(cls,id):
         downvote_pitch = Downvote(user = current_user, pitch_id=id)
         downvote_pitch.save_downvotes()
 
-    
     @classmethod
     def get_downvotes(cls,id):
         downvote = Downvote.query.filter_by(pitch_id=id).all()
