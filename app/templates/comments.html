@@ -1,0 +1,44 @@
+{% include 'navbar.html'%}
+
+{% import 'bootstrap/wtf.html' as wtf %}
+{% extends 'bootstrap/base.html' %}
+{% import 'macros.html' as macro %}
+<!-- Styles block -->
+
+{% block styles%}
+{{ super() }}
+
+<link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+
+{% endblock %}
+<!-- Content block -->
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="card">
+            <div class="card-body text-center col-md-6" style="box-shadow: 2px 4px 12px 2px rgb(148, 147, 147); margin: 1rem; padding: 0; border-radius: 10px; margin-left: 300px; margin-bottom: 20px; background-image: url('https://i.pinimg.com/originals/50/85/16/5085160094547b9bd560a072ca250953.jpg');">
+                <h4><a> Title:{{pitch.title}}</a></h4>
+                <h5 class="card-text text-center" style="font-family: 'Great Vibes', cursive; font-size:24px;">{{pitch.description}}.</h5>
+            </div>
+        </div>
+
+        {{wtf.quick_form(form)}}
+
+        <hr>
+        <hr>
+        <div class="container ">
+            <div class="col-md-12 ">
+                <h4 style="color:rgb(7, 7, 7);  text-align: center;text-underline-position: below">Comments</h4>
+                <hr>{{ macro.displayComment(comment) }}
+                <hr>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
