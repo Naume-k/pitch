@@ -85,11 +85,17 @@ A user can view and submit pitches by category.
 
 ### Technologies Used
 Python 3.6
+
 HTML5, 
+
 CSS and 
+
 Bootstrap
+
 Flask Framework
+
 Postgressql
+
 Heroku
 
 ### Known Bugs
