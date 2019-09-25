@@ -1,0 +1,70 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'macros.html' as macro %}
+{% block navbar %}
+{% include 'navbar.html'%}
+{% endblock %}
+<!-- Styles block -->
+
+{% block styles%}
+{{ super() }}
+
+<link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+
+{% endblock %}
+<!-- Content block -->
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <h1 style="text-align:center;margin-top:50px;font-family: 'Great Vibes', cursive;border-bottom:2px solid rgb(7, 7, 7)">
+                Categories</h1>
+            <br>
+            <ul>
+                <a style="font-size:24px;text-transform:uppercase;text-decoration:none;color:black;font-family: 'Times New Roman', Times, serif"
+                    data-toggle="tab" href="#Cute"><span style=" content: '\2713';">&#10003;</span> CUTE</a>
+            </ul>
+
+            <ul>
+                <a style="font-size:24px;text-transform:uppercase;text-decoration:none;color:black;font-family: 'Times New Roman', Times, serif"
+                    data-toggle="tab" href="#Funny"><span style=" content: '\2713';">&#10003;</span> FUNNY</a>
+            </ul>
+
+            <ul>
+                <a style="font-size:24px;text-transform:uppercase;text-decoration:none;color:black;font-family: 'Times New Roman', Times, serif"
+                    data-toggle="tab" href="#Inspirational"><span style=" content: '\2713';">&#10003;</span>
+                    INSPIRATIONAL</a>
+            </ul>
+
+            <ul>
+                <a style="font-size:24px;text-transform:uppercase;text-decoration:none;  color:black;font-family: 'Times New Roman', Times, serif;"
+                    data-toggle="tab" href="#Love'"><span style=" content: '\2713';">&#10003;</span> LOVE</a>
+            </ul>
+        </div>
+
+        <div class="col-sm-3">
+
+        </div>
+        <div class=" tab-content">
+            <div id="Cute" class="container tab-pane active" ><br>
+                {{ macro.display(Cute) }}
+
+            </div>
+            <div id="Funny" class="container tab-pane fade"><br>
+                {{ macro.display(Funny) }}
+            </div>
+            <div id="Inspirational" class="container tab-pane fade" ><br>
+                {{ macro.display(Inspirational)}}
+            </div>
+            <div id="Love" class="container tab-pane fade" ><br>
+                {{ macro.display(Love) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top:300px; background-color:black;text-align:center;color:white;height:100px;font-size:18px;padding-top:40px;">
+    <p> &copy;2019 copyright | kobnaome |All Right Reserved </p>
+</div>
+{% endblock %}
+
